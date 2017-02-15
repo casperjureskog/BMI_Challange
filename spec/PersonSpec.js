@@ -10,16 +10,19 @@ describe("Person", function() {
     expect(person.weight).toEqual(90);
   });
 
-  it("should have height of 1.86m", function() {
-    expect(person.height).toEqual(1.86);
+  it("should have height of 186m", function() {
+    expect(person.height).toEqual(186);
   });
 
-  it ("control for height input format", function() {
-    expect(person.height).toEqual(1.86);
+  it("should calculate BMI value", function() {
+    person.calculate_bmi();
+    expect(person.bmiValue).toEqual(26.01)
   });
 
-  it("should hav a kalkylator for bmi", function() {
-    expect(bmi).toEqual(90/(1.86*1.86));
+  it("should have a BMI Message", function() {
+    person.calculate_bmi();
+   expect(person.bmiMessage).toEqual("Overweight")
   });
+
 
 });
