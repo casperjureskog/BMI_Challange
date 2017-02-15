@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="utf-8">
     <noscript>
     <meta http-equiv="refresh" content="0; URL=http://example.com/noscript.html"/>
@@ -12,13 +13,16 @@
     <script type="text/javascript">
 
   $(document).ready(function () {
-    $('#calculate').click(function () {
+      $('#calculate').click(function () {
+      var me = $( "#metric1 option:selected" ).text();
       var w = parseFloat($('#weight').val());
       var h = parseFloat($('#height').val());
-      var person = new Person({weight: w, height: h});
+      var person = new Person({metric1: me, weight: w, height: h});
       person.calculate_bmi();
+      $("form")[0].reset();
       $('#display_value').html('Your BMI is ' + person.bmiValue);
       $('#display_message').html('and you are '+ person.bmiMessage);
+
     });
   });
 </script>
@@ -26,7 +30,13 @@
   <body>
     <form>
       <input type="text" id="weight" placeholder="Weight">
-      <input type="text" id="height" placeholder="Height">
+      <input type="text" id="height" placeholder="Height">&nbsp;
+      <select id="metric1">
+        <option >Metric</option>
+        <option value="imperial">Imperial</option>
+      </select>
+
+      <br><br>
       <input type="button" id="calculate" value="Calculate">
     </form>
     <div>

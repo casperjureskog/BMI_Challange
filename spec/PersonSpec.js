@@ -3,7 +3,7 @@ describe("Person", function() {
   var person;
 
   beforeEach(function() {
-    person = new Person({weight: 90, height: 186});
+    person = new Person({weight: 90, height: 186, metric1: "Metric"});
   });
 
   it("should have weight of 90kg", function() {
@@ -16,13 +16,17 @@ describe("Person", function() {
 
   it("should calculate BMI value", function() {
     person.calculate_bmi();
-    expect(person.bmiValue).toEqual(26.01)
+    expect(person.bmiValue).toEqual(26.01);
   });
 
   it("should have a BMI Message", function() {
     person.calculate_bmi();
-   expect(person.bmiMessage).toEqual("Overweight")
+    expect(person.bmiMessage).toEqual("Overweight");
   });
 
+  it("checkbox should have value sett to false at start", function() {
+    $('#calculate').click()
+    expect(person.metric1).toEqual("Metric");
+  });
 
 });
