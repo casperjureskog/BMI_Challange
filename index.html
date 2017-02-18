@@ -1,92 +1,38 @@
-<!doctype html>
-<html class="no-js" lang="en" dir="ltr">
+<!DOCTYPE html>
+<html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bmi_Calculator</title>
-    <link rel="stylesheet" href="css/foundation.css">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/style.css">
+    <noscript>
+    <meta http-equiv="refresh" content="0; URL=http://example.com/noscript.html"/>
+</noscript>
+    <title></title>
     <script src="src/person.js"></script>
     <script src="src/BmiCalculator.js"></script>
     <script src='https://code.jquery.com/jquery-2.1.4.js'></script>
     <script type="text/javascript">
 
-       $(document).ready(function () {
-         $('#display_image').css('backgroundImage','url(img/normal.jpg)');
-             if($("#metric1 option:selected").text() == "Metric"){
-                $("#foot1").hide();
-                $("#weight").attr("placeholder", "Kilo").blur();
-                $("#height").attr("placeholder", "cm").blur();
-             }else{
-               $("#height").attr("placeholder", "Inch").blur();
-               $("#weight").attr("placeholder", "punds").blur();
-               $("#foot1").show();
-               }
-       $("#metric1").change(function() {
-           if($("#metric1 option:selected").text() == "Metric"){
-              $("#foot1").hide();
-              $("#height").attr("placeholder", "cm").blur();
-              $("#weight").attr("placeholder", "Kilo").blur();
-           }else{
-             $("#height").attr("placeholder", "Inch").blur();
-             $("#weight").attr("placeholder", "pund").blur();
-             $("#foot1").show();
-             }
-          });
-       $('#calculate').click(function () {
-          var me = $( "#metric1 option:selected" ).text();
-          var w = parseFloat($('#weight').val());
-          var f = parseFloat($('#foot1').val());
-          var h = parseFloat($('#height').val());
-       var person = new Person({metric1: me, foot1: f, weight: w, height: h});
-        person.calculate_bmi();
-          $("form")[0].reset();
-          $("#foot1").hide();
-          $('#display_value').html('Your BMI is ' + person.bmiValue);
-          $('#display_message').html('and you are '+ person.bmiMessage);
-          $('#display_image').css('backgroundImage','url(img/'+person.bmiMessage+'.jpg)');
-
-debugger;
+  $(document).ready(function () {
+    $('#calculate').click(function () {
+      var w = parseFloat($('#weight').val());
+      var h = parseFloat($('#height').val());
+      var person = new Person({weight: w, height: h});
+      person.calculate_bmi();
+      $('#display_value').html('Your BMI is ' + person.bmiValue);
+      $('#display_message').html('and you are '+ person.bmiMessage);
     });
   });
 </script>
   </head>
   <body>
-    <div class="row">
+    <form>
+      <input type="text" id="weight" placeholder="Weight">
+      <input type="text" id="height" placeholder="Height">
+      <input type="button" id="calculate" value="Calculate">
+    </form>
+    <div>
+      <span id="display_value"></span>
+      <span id="display_message"></span>
 
-      <div class="large-3 columns">&nbsp;
-      </div>
-
-      <div class="large-6 columns" class"main" id="display_image">
-        <div class="panel">
-          <h1>Bmi Calculator</h1>
-              <form><br>
-              <h4>weight</h4>
-                <input type="text" id="weight" placeholder="Weight"><br>
-                <h4>Height</h4>
-                <input type="text" id="foot1" placeholder="foot">
-                <input type="text" id="height" placeholder="Height">&nbsp;
-                <select id="metric1">
-                  <option>Metric</option>
-                  <option>Imperial</option>
-                </select>
-                 <br><br>
-                 <input type="submit" id="calculate" value="Calculate">
-              </form><br>
-              <h2> <span id="display_value"></span>
-              <span id="display_message"></span></h2>
-          </div>
-       </div>
-
-       <div class="large-3 columns">&nbsp;
-       </div>
     </div>
-
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/vendor/what-input.js"></script>
-    <script src="js/vendor/foundation.js"></script>
-    <script src="js/app.js"></script>
   </body>
 </html>

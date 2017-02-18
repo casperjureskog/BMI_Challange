@@ -11,16 +11,6 @@ BMICalculator.prototype.metric_bmi = function(obj) {
   }
 };
 
-BMICalculator.prototype.imperial_bmi = function(obj) {
-  var weight = obj.weight;
-  var height = obj.height;
-  if (weight > 0 && height > 0) {
-    var finalBmi = (weight * 703) / (height * height);
-    obj.bmiValue =  parseFloat(finalBmi.toFixed(2));
-    setBMIMessage(obj);
-  }
-};
-
 function setBMIMessage (obj){
   if (obj.bmiValue < 18.5) {
     obj.bmiMessage = "Underweight"
@@ -35,3 +25,14 @@ function setBMIMessage (obj){
     obj.bmiMessage = "Obese"
   }
 }
+
+
+BMICalculator.prototype.metric_bmi = function(obj) {
+  var weight = obj.weight;
+  var height = obj.height;
+  if (weight > 0 && height > 0) {
+    var finalBmi = weight / (height / 100 * height / 100);
+    obj.bmiValue =  parseFloat(finalBmi.toFixed(2));
+    setBMIMessage(obj);
+  }
+};
