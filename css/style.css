@@ -33,7 +33,7 @@ form {
   padding-right: 10px;
 }
 
-input[type=submit] {
+input[type=button] {
   width: 40%;
    background-color: #E16B02;
    color: white;

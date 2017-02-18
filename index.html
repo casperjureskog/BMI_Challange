@@ -12,7 +12,6 @@
     <script src="src/BmiCalculator.js"></script>
     <script src='https://code.jquery.com/jquery-2.1.4.js'></script>
     <script type="text/javascript">
-
        $(document).ready(function () {
          $('#display_image').css('backgroundImage','url(img/Normal.jpg)');
              if($("#metric1 option:selected").text() == "Metric"){
@@ -25,31 +24,31 @@
                $("#foot1").show();
                }
        $("#metric1").change(function() {
-            if($("#metric1 option:selected").text() == "Metric"){
-               $("#foot1").hide();
-               $("#height").attr("placeholder", "cm").blur();
-               $("#weight").attr("placeholder", "Kilo").blur();
-            }else{
-              $("#height").attr("placeholder", "Inch").blur();
-              $("#weight").attr("placeholder", "pund").blur();
-              $("#foot1").show();
-              }
-          });
-           $('#calculate').click(function () {
-              var me = $( "#metric1 option:selected" ).text();
-              var w = parseFloat($('#weight').val());
-              var f = parseFloat($('#foot1').val());
-              var h = parseFloat($('#height').val());
-           var person = new Person({metric1: me, foot1: f, weight: w, height: h});
-            person.calculate_bmi();
-              // $("form")[0].reset();
+           if($("#metric1 option:selected").text() == "Metric"){
               $("#foot1").hide();
-              $('#display_value').html('Your BMI is ' + person.bmiValue);
-              $('#display_message').html('and you are '+ person.bmiMessage);
-              $('#display_image').css('backgroundImage','url(img/'+person.bmiMessage+'.jpg)');
+              $("#height").attr("placeholder", "cm").blur();
+              $("#weight").attr("placeholder", "Kilo").blur();
+           }else{
+             $("#height").attr("placeholder", "Inch").blur();
+             $("#weight").attr("placeholder", "pund").blur();
+             $("#foot1").show();
+             }
+          });
+       $('#calculate').click(function () {
+         
+          var me = $( "#metric1 option:selected" ).text();
+          var w = parseFloat($('#weight').val());
+          var f = parseFloat($('#foot1').val());
+          var h = parseFloat($('#height').val());
+       var person = new Person({metric1: me, foot1: f, weight: w, height: h});
+        person.calculate_bmi();
+          $("form")[0].reset();
+          $("#foot1").hide();
+          $('#display_value').html('Your BMI is ' + person.bmiValue);
+          $('#display_message').html('and you are '+ person.bmiMessage);
+          $('#display_image').css('backgroundImage','url(img/'+person.bmiMessage+'.jpg)');
 
-
-        });
+    });
   });
 </script>
   </head>
@@ -73,7 +72,7 @@
                   <option>Imperial</option>
                 </select>
                  <br><br>
-                 <input type="submit" id="calculate" value="Calculate">
+                 <input type="button" id="calculate" value="Calculate">
               </form><br>
               <h2> <span id="display_value"></span>
               <span id="display_message"></span></h2>
